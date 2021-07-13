@@ -1,4 +1,4 @@
 # PetAdoption-Backend
 Back-end side
 ## Install:
-npm install
+npm install / yarn install
