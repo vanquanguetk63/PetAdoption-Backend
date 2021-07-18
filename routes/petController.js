@@ -4,6 +4,7 @@ const petModel = require('../models/pet');
 
 petRouter.route('/')
     .get(async function (req, res, next) {
+        // return a list
         let result= await petModel.findAll();
         res.send(result);
     })

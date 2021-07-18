@@ -25,7 +25,7 @@ app.use(express.json());
 app.use('/api', Router);
 
 // test server:
-app.use('/',(req, res) => {res.send("hello!")})
+app.use('/',(req, res) => {res.send("<h1>This is root, go to: <a href='/api/pet'>pet</a></h1>")})
 
 // app.use(function (err, req, res, next) {
 //     // set locals, only providing error in development
