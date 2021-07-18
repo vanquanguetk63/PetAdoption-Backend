@@ -19,8 +19,10 @@ mongoose.connect(configs.dbUrl,{
 
 // this logs sth like: GET /api/pet/60f3989f5d1b7a2a68462314 200 23.579 ms - 2
 app.use(logger('dev'));
-// this creates the "req.body"
+// these creates the "req.body"
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+// app.use(express.static(''))
 
 app.use('/api', Router);
 
