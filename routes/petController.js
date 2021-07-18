@@ -4,18 +4,18 @@ const petModel = require('../models/pet');
 
 petRouter.route('/')
     .get(async function (req, res, next) {
-        let list= await petModel.findAll();
-        res.send(list?list:"no thong");
+        let result= await petModel.findAll();
+        res.send(result);
     })
     .post(async function (req, res, next) {
         let data=req.body;
-        let petp = await petModel.newPet(data.name, data.species);
-        res.send(petp);
+        let result = await petModel.newPet(data.name, data.species);
+        res.send(result);
     });
 petRouter.route('/:id')
     .get(async function (req, res, next) {
-        let p= await petModel.findById(req.params.id);
-        res.send(p);
+        let result= await petModel.findById(req.params.id);
+        res.send(result);
     })
 
 module.exports = petRouter;
