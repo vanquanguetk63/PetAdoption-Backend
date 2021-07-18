@@ -10,7 +10,7 @@ petRouter.route('/')
     })
     .post(async function (req, res, next) {
         let data=req.body;
-        let result = await petModel.newPet(data.name, data.species);
+        let result = await petModel.newPet(data.name, data.species, data.description);
         res.send(result);
     });
 petRouter.route('/:id')

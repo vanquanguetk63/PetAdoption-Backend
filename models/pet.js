@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 
 /*
   TODO:
-  - Joi validation
+  - Use Joi validation
   - Add more attribute to Pet model
   - Add more exports method
-  - "catch" in mongoose query 
 */
 
 const Pet = new mongoose.model(
@@ -45,11 +44,14 @@ module.exports.newPet = async function newPet(name, species, ...arr) {
     }
 }
 
-// catch works?
 module.exports.findAll = async function findAll() {
-    return await Pet.find().catch(err=> console.log(`find all err: ${err.message}`));
+    return await Pet.find()
+}
+module.exports.find10 = async function find10() {
+    return await Pet.find()
+      .limit(10)
 }
 module.exports.findById = async function findById(id) {
-    return await Pet.find({ _id: id}).catch(err=> console.log(`find by id err: ${err.message}`));
+    return await Pet.find({ _id: id})
 }
 
