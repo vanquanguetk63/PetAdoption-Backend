@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "npx nodemon app.js"
+    "start:nm": "npx nodemon app.js",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "14.17.3"
   },
   "repository": {
     "type": "git",
@@ -15,6 +19,7 @@
   "homepage": "https://github.com/vanquanguetk63/PetAdoption-Backend#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "joi": "^17.4.2",
     "mongoose": "^5.13.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12"
