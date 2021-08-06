@@ -10,12 +10,6 @@ const Feedback = new mongoose.model(
       required: true,
       maxlength: 100,
     },
-    //sdt
-    contact: {
-      type: String,
-      length: 10,
-      // require:true,
-    },
     email: {
       type: String,
     },
@@ -26,14 +20,14 @@ const Feedback = new mongoose.model(
     content: {
       type: String,
     },
-    isBrowsed: {
-      type: Boolean,
-      default: false,
-      require: true,
-    },
-    dateBrowsed: {
-      type: Date,
-    },
+    // isBrowsed: {
+    //   type: Boolean,
+    //   default: false,
+    //   require: true,
+    // },
+    // dateBrowsed: {
+    //   type: Date,
+    // },
     dateImported: {
       type: Date,
       require: true,
@@ -44,14 +38,12 @@ const Feedback = new mongoose.model(
 
 module.exports.newDonate = async function newDonate(
   name,
-  contact,
   email,
   title,
   content
 ) {
   let f = new Feedback({
     name: name,
-    contact: contact,
     email: email,
     title: title,
     content: content,
