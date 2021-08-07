@@ -175,19 +175,21 @@ module.exports.findWithOptions = async function findWithOptions(payload) {
   let filter = {};
   if (payload.animal) filter.animal = payload.animal;
   if (payload.sex) filter.sex = payload.sex;
-  // if (payload.ageInMonths) filter.ageInMonths = payload.ageInMonths;
+  if (payload.ageInMonths)
+    filter.ageInMonths = { $lte: parseInt(payload.ageInMonths) };
   if (payload.isNeutered) filter.isNeutered = payload.isNeutered;
-  // if (payload.color) filter.color = payload.color;
-  // if (payload.weight) filter.weight = payload.weight;
+  if (payload.color) filter.color = payload.color;
+  if (payload.weight) filter.weight = { $lte: parseInt(payload.weight) };
   if (payload.isPeeProperly) filter.isPeeProperly = payload.isPeeProperly;
-  let pageNumber = payload.pageNumber || 1;
-  let pageSize = payload.pageSize || 8;
+  let pageNumber = payload.pageNumber ? parseInt(payload.pageNumber) : 1;
+  let pageSize = payload.pageSize ? parseInt(payload.pageSize) : 8;
+
   return await Pet.find(filter)
     .skip((pageNumber - 1) * pageSize)
     .limit(pageSize)
-    .sort({ dateImported: 1 });
+    .sort({ ageInMonths: -1, dateImported: 1 });
 };
-
+// TODO: fix this
 module.exports.updateInfo = async function updateInfo(payload) {
   const p = await Pet.findOne({ petCode: payload.petCode });
   console.log(p);
