@@ -24,11 +24,14 @@ get /pet/:petCode   get pet by petCode
 
 put /pet/:petCode   update pet information (incompleted)
 
-post /pet/find  find pet theo các filter: (đều không bắt buộc)
+post /pet/find  find pet theo các filter: (đều không bắt buộc, để trong url)
     animal: String, cat | dog
     sex: String, male | female
-    isNeutered: thiến? 
-    isPeeProperly: đi wc đúng chỗ?
+    ageInMonths: Number, return <=ageInMonths
+    isNeutered: Boolean, thiến? 
+    isPeeProperly: Boolean, đi wc đúng chỗ?
+    color: String, 
+    weight: Number, return >=weight
     pageNumber: đánh số trang, bắt đầu từ 1, mặc định 1
     pageSize: cỡ trang, mặc định 8
 
