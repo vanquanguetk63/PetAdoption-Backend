@@ -31,7 +31,7 @@ post /pet/find  find pet theo các filter: (đều không bắt buộc, để tr
     isNeutered: Boolean, thiến? 
     isPeeProperly: Boolean, đi wc đúng chỗ?
     color: String, 
-    weight: Number, return >=weight
+    weight: Number, return <=weight
     pageNumber: đánh số trang, bắt đầu từ 1, mặc định 1
     pageSize: cỡ trang, mặc định 8
 
