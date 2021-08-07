@@ -1,0 +1,45 @@
+get /pet   lấy tất cả pet
+post /pet  thêm pet, params: (chỉ có "name" và "animal" là bắt buộc)
+    name: String, required, maxlength: 100,
+    animal: String, required, enum: ["cat", "dog"],
+    breed: String, maxLength: 100, default: null,
+    color: String, maxLength: 100,
+    weight: String, max: 50 (đơn vị "ki-lô-gram" nhé)
+    ageInMonths: Number,max: 120,default: null (đơn vị là "tháng")
+    sex: String, enum: ["male", "female", ""],
+    isNeutered: Boolean, default: null 
+    isDiseaseVac: Boolean, default: null
+    isRabiesVac: Boolean, default: null
+    isHumanFriendly: Boolean, default: null
+    isCatFriendly: Boolean, default: null
+    isDogFriendly: Boolean, default: null
+    isSpecialDiet: Boolean, default: null
+    isPeeProperly: Boolean, default: null
+    avatar: String,
+    images: [String],
+    description: String, maxlength: 255,
+
+get /pet/:petCode   get pet by petCode
+    petCode: Number, length: 5
+
+put /pet/:petCode   update pet information (incompleted)
+
+post /pet/find  find pet theo các filter: (đều không bắt buộc)
+    animal: String, cat | dog
+    sex: String, male | female
+    isNeutered: thiến? 
+    isPeeProperly: đi wc đúng chỗ?
+    pageNumber: đánh số trang, bắt đầu từ 1, mặc định 1
+    pageSize: cỡ trang, mặc định 8
+
+get /feedback   get all feedbacks
+
+get /feedback/:id  get feedback by id
+
+post /feedback   tạo feedback mới
+    name: String, required, maxlength: 100,
+    email: String,
+    title: String, require: true,
+    content: String,
+
+post /feedback/find   hiển thị feedback theo filter, đang nghĩ tiếp

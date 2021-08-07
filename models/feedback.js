@@ -55,6 +55,9 @@ module.exports.findAll = async function findAll() {
 module.exports.findAllNewest = async function findAll() {
   return await Feedback.find().sort({ dateImported: 1 });
 };
+module.exports.findById = async function findById(id) {
+  return await Feedback.findOne({ _id: id });
+};
 module.exports.findWithOptions = async function findWithOptions(payload) {
   let filter = {};
   if (payload.id) filter.id = payload.id;
