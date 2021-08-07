@@ -7,5 +7,9 @@ const feedbackController = require("./feedback");
 router.use("/pet", petRouter);
 router.use("/donation", donationController);
 router.use("/feedback", feedbackController);
+router.get("/", (req, res) => {
+  // add docs here
+  res.send("Pet Adoption!");
+});
 
 module.exports = router;

@@ -26,7 +26,7 @@ app.use("/api", Router);
 
 // test server:
 app.use("/", (req, res) => {
-  res.send("<h1>This is root, go to: <a href='/api/pet'>pet</a></h1>");
+  res.redirect("/api");
 });
 
 app.listen(port, () => {
