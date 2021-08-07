@@ -1,3 +1,3 @@
 {
-    "dbUrl": "mongodb://localhost/petdb"
+  "dbUrl": "mongodb+srv://petdb:PZagSlhwyCT94He2@cluster0.ar4of.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }
