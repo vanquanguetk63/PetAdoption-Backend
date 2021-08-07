@@ -170,7 +170,7 @@ module.exports.find10 = async function find10() {
 module.exports.findByPetCode = async function findByPetCode(petCode) {
   return await Pet.findOne({ petCode: petCode });
 };
-// TODO: paging
+
 module.exports.findWithOptions = async function findWithOptions(payload) {
   let filter = {};
   if (payload.animal) filter.animal = payload.animal;

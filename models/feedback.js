@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
 
-// chưa fix
-
 const Feedback = new mongoose.model(
   "feedback",
   new mongoose.Schema({
     name: {
       type: String,
-      required: true,
+      // required: true,
       maxlength: 100,
     },
     email: {
@@ -36,17 +34,12 @@ const Feedback = new mongoose.model(
   })
 );
 
-module.exports.newDonate = async function newDonate(
-  name,
-  email,
-  title,
-  content
-) {
+module.exports.newFeedback = async function newFeedback(payload) {
   let f = new Feedback({
-    name: name,
-    email: email,
-    title: title,
-    content: content,
+    name: payload.name,
+    email: payload.email,
+    title: payload.title,
+    content: payload.content,
   });
   try {
     await f.save();
@@ -58,4 +51,19 @@ module.exports.newDonate = async function newDonate(
 
 module.exports.findAll = async function findAll() {
   return await Feedback.find();
+};
+module.exports.findAllNewest = async function findAll() {
+  return await Feedback.find().sort({ dateImported: 1 });
+};
+module.exports.findWithOptions = async function findWithOptions(payload) {
+  let filter = {};
+  if (payload.id) filter.id = payload.id;
+  if (payload.email) filter.email = payload.email;
+
+  let pageNumber = payload.pageNumber || 1;
+  let pageSize = payload.pageSize || 8;
+  return await Feedback.find(filter)
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize)
+    .sort({ dateImported: 1 });
 };
