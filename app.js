@@ -21,13 +21,10 @@ mongoose
 
 app.use(cors());
 app.use(logger("dev"));
-// these creates the "req.body"
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", Router);
-
-// test server:
 app.use("/", (req, res) => {
   res.redirect("/api");
 });

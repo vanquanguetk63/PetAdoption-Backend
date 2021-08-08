@@ -17,14 +17,12 @@ petRouter
     res.send(await petModel.findByPetCode(req.params.petCode));
   })
   .put(async (req, res) => {
-    // res.send(req.body);
     req.body.petCode = req.params.petCode;
     res.send(await petModel.updateInfo(req.body));
   });
 
 petRouter.route("/find").post(async (req, res) => {
   res.send(await petModel.findWithOptions(req.body));
-  // res.send(req.body);
 });
 
 module.exports = petRouter;
