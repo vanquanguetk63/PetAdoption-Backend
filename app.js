@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-// const https = require("https");
+const cors = require("cors");
 
 const Router = require("./routes");
 const configs = require("./configs");
@@ -19,16 +19,11 @@ mongoose
   .then(() => console.log("PetDB connected."))
   .catch((err) => console.log("Cannot connect to DB...", err));
 
+app.use(cors());
 app.use(logger("dev"));
 // these creates the "req.body"
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.all("/", function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
 
 app.use("/api", Router);
 
