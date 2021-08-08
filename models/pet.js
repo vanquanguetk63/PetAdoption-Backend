@@ -150,7 +150,7 @@ module.exports.findWithOptions = async function findWithOptions(payload) {
   return await Pet.find(filter)
     .skip((pageNumber - 1) * pageSize)
     .limit(pageSize)
-    .sort({ age: -1, dateImported: 1 });
+    .sort({ dateImported: 1 });
 };
 // TODO: fix this
 module.exports.updateInfo = async function updateInfo(payload) {
