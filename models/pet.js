@@ -26,29 +26,32 @@ const Pet = new mongoose.model(
     breed: {
       type: String,
       maxLength: 100,
-      default: null,
+      default: "unknown",
     },
     color: {
       type: String,
       maxLength: 100,
     },
     weight: {
-      type: String,
-      max: 50,
+      type: Number,
+      max: 100,
     },
     petCode: {
       type: String,
       required: true,
       length: 5,
     },
-    ageInMonths: {
-      type: Number,
-      max: 120,
-      default: null,
+    // age (year old): 0-1 is young; 1-7 is mature, >7 is old
+    age: {
+      type: String,
+      required: true,
+      enum: ["young", "mature", "old", "unknown"],
+      default: "unknown",
     },
     sex: {
       type: String,
-      enum: ["male", "female", ""],
+      enum: ["male", "female", "unknown"],
+      default: "unknown",
     },
     isNeutered: { type: Boolean, default: null },
     isDiseaseVac: { type: Boolean, default: null },
@@ -83,52 +86,7 @@ async function generatePetCode() {
   } while ((await Pet.exists({ petCode: digit })) == true);
   return digit;
 }
-// module.exports.newPet = async function newPet(
-//   name,
-//   animal,
-//   breed,
-//   color,
-//   ageInMonths,
-//   sex,
-//   isNeutered,
-//   isDiseaseVac,
-//   isRabiesVac,
-//   isHumanFriendly,
-//   isCatFriendly,
-//   isDogFriendly,
-//   isSpecialDiet,
-//   isPeeProperly,
-//   images,
-//   description
-//   // ...arr
-// ) {
-//   let p = new Pet({
-//     name: name,
-//     animal: animal,
-//     breed: breed,
-//     color: color,
-//     petCode: await generatePetCode(),
-//     ageInMonths: ageInMonths,
-//     sex: sex,
-//     isNeutered: isNeutered,
-//     isDiseaseVac: isDiseaseVac,
-//     isRabiesVac: isRabiesVac,
-//     isHumanFriendly: isHumanFriendly,
-//     isCatFriendly: isCatFriendly,
-//     isDogFriendly: isDogFriendly,
-//     isSpecialDiet: isSpecialDiet,
-//     isPeeProperly: isPeeProperly,
-//     images: images,
-//     description: description,
-//     dateImported: new Date(),
-//   });
-//   try {
-//     await p.save();
-//     return p;
-//   } catch (ex) {
-//     console.log(ex.message);
-//   }
-// };
+
 module.exports.newPetv2 = async function newPetv2(payload) {
   let p = new Pet({
     name: payload.name,
@@ -137,7 +95,7 @@ module.exports.newPetv2 = async function newPetv2(payload) {
     color: payload.color,
     weight: payload.weight,
     petCode: await generatePetCode(),
-    ageInMonths: payload.ageInMonths,
+    age: payload.age,
     sex: payload.sex,
     isNeutered: payload.isNeutered,
     isDiseaseVac: payload.isDiseaseVac,
@@ -173,21 +131,26 @@ module.exports.findByPetCode = async function findByPetCode(petCode) {
 
 module.exports.findWithOptions = async function findWithOptions(payload) {
   let filter = {};
+  // comment parts is for req.query only
+  // if (payload.age)
+  //   filter.age = { $lte: parseInt(payload.age) };
+  // if (payload.weight) filter.weight = { $lte: parseFloat(payload.weight) };
+  // let pageNumber = payload.pageNumber ? parseInt(payload.pageNumber) : 1;
+  // let pageSize = payload.pageSize ? parseInt(payload.pageSize) : 8;
   if (payload.animal) filter.animal = payload.animal;
   if (payload.sex) filter.sex = payload.sex;
-  if (payload.ageInMonths)
-    filter.ageInMonths = { $lte: parseInt(payload.ageInMonths) };
+  if (payload.age) filter.age = payload.age;
   if (payload.isNeutered) filter.isNeutered = payload.isNeutered;
   if (payload.color) filter.color = payload.color;
-  if (payload.weight) filter.weight = { $lte: parseInt(payload.weight) };
   if (payload.isPeeProperly) filter.isPeeProperly = payload.isPeeProperly;
-  let pageNumber = payload.pageNumber ? parseInt(payload.pageNumber) : 1;
-  let pageSize = payload.pageSize ? parseInt(payload.pageSize) : 8;
+  if (payload.weight) filter.weight = { $lte: payload.weight };
+  let pageNumber = payload.pageNumber ? payload.pageNumber : 1;
+  let pageSize = payload.pageSize ? payload.pageSize : 8;
 
   return await Pet.find(filter)
     .skip((pageNumber - 1) * pageSize)
     .limit(pageSize)
-    .sort({ ageInMonths: -1, dateImported: 1 });
+    .sort({ age: -1, dateImported: 1 });
 };
 // TODO: fix this
 module.exports.updateInfo = async function updateInfo(payload) {
@@ -200,7 +163,7 @@ module.exports.updateInfo = async function updateInfo(payload) {
       breed: payload.breed,
       color: payload.color,
       weight: payload.weight,
-      // ageInMonths: payload.ageInMonths,
+      // age: payload.age,
       // sex: payload.sex,
       isNeutered: payload.isNeutered,
       isDiseaseVac: payload.isDiseaseVac,

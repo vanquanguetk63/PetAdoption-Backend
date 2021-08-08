@@ -23,7 +23,8 @@ petRouter
   });
 
 petRouter.route("/find").post(async (req, res) => {
-  res.send(await petModel.findWithOptions(req.query));
+  res.send(await petModel.findWithOptions(req.body));
+  // res.send(req.body);
 });
 
 module.exports = petRouter;

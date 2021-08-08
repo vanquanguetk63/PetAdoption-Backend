@@ -2,11 +2,11 @@ get /pet   lấy tất cả pet
 post /pet  thêm pet, params: (chỉ có "name" và "animal" là bắt buộc)
     name: String, required, maxlength: 100,
     animal: String, required, enum: ["cat", "dog"],
-    breed: String, maxLength: 100, default: null,
+    breed: String, maxLength: 100, default: "unknown",
     color: String, maxLength: 100,
-    weight: String, max: 50 (đơn vị "ki-lô-gram" nhé)
-    ageInMonths: Number,max: 120,default: null (đơn vị là "tháng")
-    sex: String, enum: ["male", "female", ""],
+    weight: Number, max: 100 (đơn vị "ki-lô-gram" nhé)
+    age: String, required, enum: ["young", "mature", "old", "unknown"], default: "unknown",
+    sex: String, enum: ["male", "female", "unknown"], default:"unknown"
     isNeutered: Boolean, default: null 
     isDiseaseVac: Boolean, default: null
     isRabiesVac: Boolean, default: null
@@ -24,13 +24,13 @@ get /pet/:petCode   get pet by petCode
 
 put /pet/:petCode   update pet information (incompleted)
 
-post /pet/find  find pet theo các filter: (đều không bắt buộc, để trong url)
-    animal: String, cat | dog
-    sex: String, male | female
-    ageInMonths: Number, return <=ageInMonths
-    isNeutered: Boolean, thiến? 
+post /pet/find  find pet theo các filter: (đều không bắt buộc, để trong body)
+    animal: String, enum: ["cat", "dog"]
+    sex: String, enum: ["male", "female"]
+    age: String, enum: ["young", "mature", "old", "unknown"]
+    isNeutered: Boolean, triệt sản? 
     isPeeProperly: Boolean, đi wc đúng chỗ?
-    color: String, 
+    color: String, màu lông, enum
     weight: Number, return <=weight
     pageNumber: đánh số trang, bắt đầu từ 1, mặc định 1
     pageSize: cỡ trang, mặc định 8

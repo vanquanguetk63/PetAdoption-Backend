@@ -36,6 +36,4 @@ app.listen(port, () => {
   console.log(`running on port ${port} at: ${new Date()}`);
 });
 
-// https.createServer(options, app).listen(443);
-
 module.exports = app;
