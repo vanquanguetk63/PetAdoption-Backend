@@ -1,4 +1,6 @@
 # PetAdoption-Backend
 Back-end side
 ## Install:
-npm install / yarn install
+yarn
+
+yarn start:nm
