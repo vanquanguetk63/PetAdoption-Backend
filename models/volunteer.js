@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 // chưa fix
-const Human = new mongoose.model(
-  "human",
+const Volunteer = new mongoose.model(
+  "volunteer",
   new mongoose.Schema({
     name: {
       type: String,
@@ -12,23 +12,23 @@ const Human = new mongoose.model(
     contact: {
       type: String,
       length: 10,
-      require: true,
     },
     email: {
       type: String,
     },
     dateImported: {
       type: Date,
-      require: true,
+      required: true,
       default: Date.now,
     },
   })
 );
 
-module.exports.newAdoption = async function newAdoption(adopterId, petId) {
-  let d = new Human({
-    adopterId: adopterId,
-    petId: petId,
+module.exports.newVolunteer = async function newVolunteer(payload) {
+  let d = new Volunteer({
+    name: payload.name,
+    contact: payload.contact,
+    email: payload.email,
   });
   try {
     await d.save();
