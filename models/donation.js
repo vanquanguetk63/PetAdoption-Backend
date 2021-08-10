@@ -13,7 +13,7 @@ const Donation = new mongoose.model(
     contact: {
       type: String,
       length: 10,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
@@ -21,7 +21,7 @@ const Donation = new mongoose.model(
     supportType: {
       type: String,
       enum: ["money", "material"],
-      require: true,
+      required: true,
     },
     accNumber: {
       type: String,
@@ -36,7 +36,7 @@ const Donation = new mongoose.model(
     },
     dateImported: {
       type: Date,
-      require: true,
+      required: true,
       default: Date.now,
     },
   })
@@ -68,8 +68,10 @@ module.exports.findById = async function findById(id) {
 };
 module.exports.findWithOptions = async function findById(payload) {
   let filter = {};
-  if (payload.from) filter.dateImported["$lte"] = payload.from;
-  if (payload.to) filter.dateImported["$gte"] = payload.to;
-  // if (payload.)
+  filter.dateImported = {};
+
+  if (payload.from) filter.dateImported.$gte = payload.from;
+  if (payload.to) filter.dateImported.$lte = payload.to;
+
   return await Donation.find(filter);
 };

@@ -56,6 +56,6 @@ post /donation
     amount: Number,min: 0,
     material: [String],
 
-get /donation  tìm donate, có thể có các param sau:
+post /donation/find  tìm donate, có thể có các param sau:
     from: Date,
     to: Date
