@@ -46,3 +46,16 @@ post /feedback   tạo feedback mới
     content: String,
 
 post /feedback/find   hiển thị feedback theo filter, đang nghĩ tiếp
+
+post /donation
+    name: String, required, maxlength: 100,
+    contact: String, length: 10,require,
+    email: String,
+    supportType: String, enum: ["money", "material"], require,
+    accNumber: String,
+    amount: Number,min: 0,
+    material: [String],
+
+get /donation  tìm donate, có thể có các param sau:
+    from: Date,
+    to: Date

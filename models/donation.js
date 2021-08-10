@@ -42,23 +42,15 @@ const Donation = new mongoose.model(
   })
 );
 
-module.exports.newDonate = async function newDonate(
-  name,
-  contact,
-  email,
-  supportType,
-  accNumber,
-  amount,
-  material
-) {
+module.exports.newDonate = async function newDonate(payload) {
   let d = new Donation({
-    name: name,
-    contact: contact,
-    email: email,
-    supportType: supportType,
-    accNumber: accNumber,
-    amount: amount,
-    material: material,
+    name: payload.name,
+    contact: payload.contact,
+    email: payload.email,
+    supportType: payload.supportType,
+    accNumber: payload.accNumber,
+    amount: payload.amount,
+    material: payload.material,
   });
   try {
     await d.save();
@@ -70,4 +62,14 @@ module.exports.newDonate = async function newDonate(
 
 module.exports.findAll = async function findAll() {
   return await Donation.find();
+};
+module.exports.findById = async function findById(id) {
+  return await Donation.find({ _id: id });
+};
+module.exports.findWithOptions = async function findById(payload) {
+  let filter = {};
+  if (payload.from) filter.dateImported["$lte"] = payload.from;
+  if (payload.to) filter.dateImported["$gte"] = payload.to;
+  // if (payload.)
+  return await Donation.find(filter);
 };

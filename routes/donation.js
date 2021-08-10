@@ -2,21 +2,15 @@ const express = require("express");
 const petRouter = express.Router();
 const donModel = require("../models/donation");
 
-petRouter.route("/").get(async function (req, res, next) {
-  res.send(await donModel.findAll());
+petRouter
+  .route("/")
+  .get(async (req, res) => {
+    res.send(await donModel.findWithOptions(req.body));
+  })
+  .post(async (req, res) => {
+    res.send(await donModel.newDonate(req.body));
+  });
+petRouter.route("/:id").get(async (req, res) => {
+  res.send(await donModel.findById(req.params.petCode));
 });
-// .post(async function (req, res, next) {
-//   let payload = req.body;
-//   let result = await donModel.newPet(
-//     payload.name,
-//     payload.contact,
-//     payload.email,
-//     payload.supportType,
-//     payload.accNumber,
-//     payload.amount,
-//     payload.material
-//   );
-//   res.send(result);
-// });
-
 module.exports = petRouter;
