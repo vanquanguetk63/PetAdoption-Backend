@@ -19,6 +19,9 @@ petRouter
   .put(async (req, res) => {
     req.body.petCode = req.params.petCode;
     res.send(await petModel.updateInfo(req.body));
+  })
+  .delete(async (req, res) => {
+    res.send(await petModel.deletePet(req.params.petCode));
   });
 
 petRouter.route("/find").post(async (req, res) => {

@@ -72,6 +72,7 @@ module.exports.findWithOptions = async function findById(payload) {
 
   if (payload.from) filter.dateImported.$gte = payload.from;
   if (payload.to) filter.dateImported.$lte = payload.to;
+  if (payload.contact) filter.contact = payload.contact;
 
   return await Donation.find(filter);
 };

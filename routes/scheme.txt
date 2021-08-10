@@ -20,9 +20,10 @@ post /pet  thêm pet, params: (chỉ có "name" và "animal" là bắt buộc)
     description: String, maxlength: 255,
 
 get /pet/:petCode   get pet by petCode
+delete /pet/:petCode  delete a pet from db
     petCode: Number, length: 5
 
-put /pet/:petCode   update pet information (incompleted)
+put /pet/:petCode   update pet information (incomplete)
 
 post /pet/find  find pet theo các filter: (đều không bắt buộc, để trong body)
     animal: String, enum: ["cat", "dog"]

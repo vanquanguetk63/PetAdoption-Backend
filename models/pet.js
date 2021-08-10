@@ -181,3 +181,8 @@ module.exports.updateInfo = async function updateInfo(payload) {
     return p;
   }
 };
+module.exports.deletePet = async function deletePet(petCode) {
+  return await Pet.deleteOne({ petCode: petCode }, (err) => {
+    if (err) return err;
+  });
+};
