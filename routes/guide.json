@@ -1,6 +1,6 @@
 [
   {
-    "route": "api/feedback",
+    "route": "/api/feedback",
     "method": "post",
     "Mô tả": "tạo feedback mới",
     "body params": {
@@ -11,12 +11,12 @@
     }
   },
   {
-    "route": "api/pet",
+    "route": "/api/pet",
     "method": "get",
     "Mô tả": "lấy tất cả pet"
   },
   {
-    "route": "api/pet",
+    "route": "/api/pet",
     "method": "post",
     "Mô tả": "thêm pet",
     "body params": {
@@ -41,17 +41,17 @@
     }
   },
   {
-    "route": "api/petapi/:petCode",
+    "route": "/api/pet/api/:petCode",
     "method": "get",
     "Mô tả": "get pet by petCode"
   },
   {
-    "route": "api/petapi/:petCode",
+    "route": "/api/pet/api/:petCode",
     "method": "delete",
     "Mô tả": "delete a pet from db"
   },
   {
-    "route": "api/petapi/:petCode",
+    "route": "/api/pet/api/:petCode",
     "method": "put",
     "Mô tả": "update pet information",
     "body params": {
@@ -76,7 +76,7 @@
     }
   },
   {
-    "route": "api/petapi/find",
+    "route": "/api/pet/api/find",
     "method": "post",
     "Mô tả": "find pet theo các filter (đều không bắt buộc, để trong body)",
     "body params": {
@@ -92,17 +92,17 @@
     }
   },
   {
-    "route": "api/feedback",
+    "route": "/api/feedback",
     "method": "get",
     "Mô tả": "get all feedbacks"
   },
   {
-    "route": "api/feedbackapi/:id",
+    "route": "/api/feedback/api/:id",
     "method": "get",
     "Mô tả": "get feedback by id"
   },
   {
-    "route": "api/feedback",
+    "route": "/api/feedback",
     "method": "post",
     "Mô tả": "tạo feedback mới",
     "body params": {
