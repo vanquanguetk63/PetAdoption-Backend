@@ -1,0 +1,115 @@
+[
+  {
+    "route": "/feedback",
+    "method": "post",
+    "Mô tả": "tạo feedback mới",
+    "body params": {
+      "name": "String, required, maxlength: 100",
+      "email": "String",
+      "title": "String, require: true",
+      "content": "String"
+    }
+  },
+  {
+    "route": "/pet",
+    "method": "get",
+    "Mô tả": "lấy tất cả pet"
+  },
+  {
+    "route": "/pet",
+    "method": "post",
+    "Mô tả": "thêm pet",
+    "body params": {
+      "name": "String, required, maxlength: 100",
+      "animal": "String, required, enum: [cat, dog]",
+      "breed": "String, maxLength: 100, default: unknown",
+      "color": "String, maxLength: 100",
+      "weight": "Number, max: 100 (đơn vị ki-lô-gram)",
+      "age": "String, required, enum: [young, mature, old, unknown], default: unknown",
+      "sex": "String, enum: [male, female, unknown], default:unknown",
+      "isNeutered": "Boolean, default: null",
+      "isDiseaseVac": "Boolean, default: null",
+      "isRabiesVac": "Boolean, default: null",
+      "isHumanFriendly": "Boolean, default: null",
+      "isCatFriendly": "Boolean, default: null",
+      "isDogFriendly": "Boolean, default: null",
+      "isSpecialDiet": "Boolean, default: null",
+      "isPeeProperly": "Boolean, default: null",
+      "avatar": "String",
+      "images": "[String]",
+      "description": "String, maxlength: 255"
+    }
+  },
+  {
+    "route": "/pet/:petCode",
+    "method": "get",
+    "Mô tả": "get pet by petCode"
+  },
+  {
+    "route": "/pet/:petCode",
+    "method": "delete",
+    "Mô tả": "delete a pet from db"
+  },
+  {
+    "route": "/pet/:petCode",
+    "method": "put",
+    "Mô tả": "update pet information",
+    "body params": {
+      "name": "String, required, maxlength: 100",
+      "animal": "String, required, enum: [cat, dog]",
+      "breed": "String, maxLength: 100, default: unknown",
+      "color": "String, maxLength: 100",
+      "weight": "Number, max: 100 (đơn vị ki-lô-gram)",
+      "age": "String, required, enum: [young, mature, old, unknown], default: unknown",
+      "sex": "String, enum: [male, female, unknown], default:unknown",
+      "isNeutered": "Boolean, default: null",
+      "isDiseaseVac": "Boolean, default: null",
+      "isRabiesVac": "Boolean, default: null",
+      "isHumanFriendly": "Boolean, default: null",
+      "isCatFriendly": "Boolean, default: null",
+      "isDogFriendly": "Boolean, default: null",
+      "isSpecialDiet": "Boolean, default: null",
+      "isPeeProperly": "Boolean, default: null",
+      "avatar": "String",
+      "images": "[String]",
+      "description": "String, maxlength: 255"
+    }
+  },
+  {
+    "route": "/pet/find",
+    "method": "post",
+    "Mô tả": "find pet theo các filter (đều không bắt buộc, để trong body)",
+    "body params": {
+      "animal": "String, enum: [cat, dog]",
+      "sex": "String, enum: [male, female]",
+      "age": "String, enum: [young, mature, old, unknown]",
+      "isNeutered": "Boolean, triệt sản? ",
+      "isPeeProperly": "Boolean, đi wc đúng chỗ?",
+      "color": "String, màu lông, enum",
+      "weight": "Number, return <=weight",
+      "pageNumber": "đánh số trang, bắt đầu từ 1, mặc định 1",
+      "pageSize": "cỡ trang, mặc định 8"
+    }
+  },
+  {
+    "route": "/feedback",
+    "method": "get",
+    "Mô tả": "get all feedbacks"
+  },
+  {
+    "route": "/feedback/:id",
+    "method": "get",
+    "Mô tả": "get feedback by id"
+  },
+  {
+    "route": "/feedback",
+    "method": "post",
+    "Mô tả": "tạo feedback mới",
+    "body params": {
+      "name": "String, required, maxlength: 100",
+      "email": "String",
+      "title": "String, require: true",
+      "content": "String"
+    }
+  }
+]

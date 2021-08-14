@@ -4,14 +4,14 @@ const petRouter = require("./pet");
 const donationController = require("./donation");
 const feedbackController = require("./feedback");
 const path = require("path");
+const guide = require("./guide.json");
 
 router.use("/pet", petRouter);
 router.use("/donation", donationController);
 router.use("/feedback", feedbackController);
 // router.use("/volunteer", );
 router.get("/", (req, res) => {
-  // add docs here
-  res.sendFile(path.join(__dirname, "/scheme.txt"));
+  res.send(guide);
 });
 
 module.exports = router;
